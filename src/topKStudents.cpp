@@ -22,5 +22,11 @@ struct student {
 };
 
 struct student ** topKStudents(struct student *students, int len, int K) {
+	if (students == NULL)
+		return NULL;
+	if (len < 0)
+		return NULL;
+	if (K <= 0)
+		return NULL;
 	return NULL;
 }
