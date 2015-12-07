@@ -22,20 +22,23 @@ struct student {
 };
 
 struct student ** topKStudents(struct student *students, int len, int K) {
+	struct student temp;
 	if (len < 0)
 		return NULL;
 	if (K <= 0)
 		return NULL;
-	//struct student *who = malloc(sizeof(struct student));
-	//int min_index = 0;
-	//for (int i = 0; len - i != K; i++){
-	//	int min = students[0].score;
-	//	for (int j = 0; j < len; j++){
-	//		if (students[j].score < min && students[j].score != 0)
-	//			min_index = j;
-	//	}
-	//	students[min_index]->score = 0;
-//	}
-//	return &students;
-	
+	struct student **topres = (struct student**)malloc(sizeof(struct student) * K);
+	for (int i = 0; i < len; ++i){
+		
+		for (int j = i + 1; j < len; ++j){
+			if (students[i].score < students[j].score){
+				temp = students[i];
+				students[i] = students[j];
+				students[j] = temp;
+			}
+		}
+	}
+	for (int i = 0; i < K; i++)
+		topres[i] = &students[i];
+	return topres;
 }
